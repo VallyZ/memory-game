@@ -24,8 +24,9 @@ let starList = document.querySelector('.stars');
 let winnerSelector = document.querySelector('.winner');
 let replayButton = document.querySelector('.replay');
 replayButton.onclick = defaultCards;
-let replayGame= document.querySelector('.restart');
 document.body.onload = defaultCards;
+let replayGame= document.querySelector('.restart');
+replayGame.onclick = defaultCards;
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -91,7 +92,7 @@ let openCard = function(){
             noMatch();
         }
     }
-    //finished();
+    finished();
 }
 
 function noMatch(){
