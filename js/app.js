@@ -12,7 +12,7 @@ let openCards = [];
  //timer
 let animated = true;
  //end stats
-
+document.body.onload = defaultCards;
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -26,4 +26,24 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+function defaultCards(){
+  cardArray = shuffle(cardArray);
+  let tempHolder = [];
+  for (let i=0;i< cardArray.length;i++){
+    cardDeck.innerHtml = '';
+    tempHolder.forEach.call(cardArray, function(item){
+    cardDeck.appendChild(item);
+    });
+    cardArray[i].className = 'card';
+  }
+  moves = 0;
+  matchList = 0;
+  count.innerHTML = 0;
+  for (let i=0;i< starCount.length;i++){
+    starCount[i].style.visibility = 'visible';
+  }
+  openCards = [];
+  animated = false;
 }
