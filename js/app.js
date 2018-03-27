@@ -84,6 +84,16 @@ function noMatch(){
     }, 1500);
 }
 
+function movesCounter(){
+    moves ++;
+    count.innerHTML = moves;
+    if (moves < 25 && moves > 15){
+        starCount[2].style.visibility = 'collapse';
+    } else if (moves > 25){
+        starCount[1].style.visibility = 'collapse';
+    }
+}
+
 for (let i=0; i <cardArray.length; i++){
     cardStack= cardArray[i];
     cardStack.addEventListener('click', openCard);
