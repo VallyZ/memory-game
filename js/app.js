@@ -10,13 +10,21 @@ const starCount = document.querySelectorAll('.fa-star');
 let matchList = 0;
 let openCards = [];
  //timer
- let timer = document.querySelector('.gameTimer');
- let second = 0;
- let minute = 0;
- let hour = 0;
- let timePassed;
+let timer = document.querySelector('.gameTimer');
+let second = 0;
+let minute = 0;
+let hour = 0;
+let timePassed;
 let animated = true;
  //end stats
+let endStar= document.querySelector('.rating');
+let endTime = document.querySelector('.endTime');
+let endMoves = document.querySelector('.totalMoves');
+let starList = document.querySelector('.stars');
+let winnerSelector = document.querySelector('.winner');
+let replayButton = document.querySelector('.replay');
+replayButton.onclick = defaultCards;
+let replayGame= document.querySelector('.restart');
 document.body.onload = defaultCards;
 
 function shuffle(array) {
@@ -54,8 +62,12 @@ function defaultCards(){
   minute=0;
   second =0;
   timer.innerHTML = hour + ' hours ' + minute + ' mins ' + second + ' secs';
+  endTime.innerHTML = '';
+  endMoves.innerHTML = '';
+  endStar.innerHTML = '';
   openCards = [];
   animated = false;
+  winnerSelector.classList.remove('show');
   gameTime();
 }
 
@@ -63,6 +75,7 @@ let openCard = function(){
     if(animated) return;
     this.classList.toggle('open');
     this.classList.toggle('show');
+    this.classList.toggle('disabled');
     openCards.push(this);
     let cardCount = openCards.length;
     if (cardCount === 2) {
@@ -89,7 +102,7 @@ function noMatch(){
     setTimeout(function(){
         animated = false;
         for (let i=0; i < openCards.length; i++){
-            openCards[i].classList.remove('show', 'open', 'unmatched');
+            openCards[i].classList.remove('show', 'open', 'unmatched', 'disabled');
         }
         openCards = [];
     }, 1500);
@@ -118,6 +131,16 @@ function gameTime(){
             minute = 0;
         }
     }, 1000);
+}
+
+function finished() {
+    if (matchList === 8){
+        clearInterval(timePassed);
+        endTime.innerHTML = timer.innerHTML;
+        endMoves.innerHTML = count.innerHTML;
+        endStar.innerHTML = starList.innerHTML;
+        winnerSelector.classList.add('show');
+    }
 }
 
 for (let i=0; i <cardArray.length; i++){
