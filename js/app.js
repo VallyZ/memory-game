@@ -10,6 +10,11 @@ const starCount = document.querySelectorAll('.fa-star');
 let matchList = 0;
 let openCards = [];
  //timer
+ let timer = document.querySelector('.gameTimer');
+ let second = 0;
+ let minute = 0;
+ let hour = 0;
+ let timePassed;
 let animated = true;
  //end stats
 document.body.onload = defaultCards;
@@ -44,8 +49,14 @@ function defaultCards(){
   for (let i=0;i< starCount.length;i++){
     starCount[i].style.visibility = 'visible';
   }
+  clearInterval(timePassed);
+  hour =0;
+  minute=0;
+  second =0;
+  timer.innerHTML = hour + ' hours ' + minute + ' mins ' + second + ' secs';
   openCards = [];
   animated = false;
+  gameTime();
 }
 
 let openCard = function(){
@@ -55,7 +66,7 @@ let openCard = function(){
     openCards.push(this);
     let cardCount = openCards.length;
     if (cardCount === 2) {
-        //movesCounter();
+        movesCounter();
         if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className){
           matchList++;
             for (let i=0; i < 2; i++){
