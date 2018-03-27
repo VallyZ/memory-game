@@ -55,7 +55,7 @@ let openCard = function(){
     openCards.push(this);
     let cardCount = openCards.length;
     if (cardCount === 2) {
-        movesCounter();
+        //movesCounter();
         if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className){
           matchList++;
             for (let i=0; i < 2; i++){
@@ -64,11 +64,26 @@ let openCard = function(){
             }
             openCards = [];
         } else {
-            //noMatch();
+            noMatch();
         }
     }
     //finished();
 }
+
+function noMatch(){
+    animated =true;
+    for (let i=0; i < 2; i++){
+    openCards[i].classList.add('unmatched');
+    }
+    setTimeout(function(){
+        animated = false;
+        for (let i=0; i < openCards.length; i++){
+            openCards[i].classList.remove('show', 'open', 'unmatched');
+        }
+        openCards = [];
+    }, 1500);
+}
+
 for (let i=0; i <cardArray.length; i++){
     cardStack= cardArray[i];
     cardStack.addEventListener('click', openCard);
