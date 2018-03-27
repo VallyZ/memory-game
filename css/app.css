@@ -183,16 +183,6 @@ h1 {
 	cursor: pointer;
 }
 
-@keyframes bounce {
-	from {
-		transform: translateY(0px);
-	}
-	to {
-		transform: translateY(-15px);
-	}
-}
-
-
 @keyframes shake {
 	0% {
 		transform: translateX(0);
