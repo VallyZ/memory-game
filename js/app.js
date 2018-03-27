@@ -47,3 +47,29 @@ function defaultCards(){
   openCards = [];
   animated = false;
 }
+
+let openCard = function(){
+    if(animated) return;
+    this.classList.toggle('open');
+    this.classList.toggle('show');
+    openCards.push(this);
+    let cardCount = openCards.length;
+    if (cardCount === 2) {
+        movesCounter();
+        if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className){
+          matchList++;
+            for (let i=0; i < 2; i++){
+                openCards[i].classList.add('match');
+                openCards[i].classList.remove('show', 'open');
+            }
+            openCards = [];
+        } else {
+            //noMatch();
+        }
+    }
+    //finished();
+}
+for (let i=0; i <cardArray.length; i++){
+    cardStack= cardArray[i];
+    cardStack.addEventListener('click', openCard);
+  }
