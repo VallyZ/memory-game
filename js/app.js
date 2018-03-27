@@ -94,6 +94,21 @@ function movesCounter(){
     }
 }
 
+function gameTime(){
+    timePassed = setInterval(function(){
+        timer.innerHTML = hour + ' hours ' + minute + ' mins ' + second + ' secs';
+        second ++;
+        if (second == 60){
+            minute ++;
+            second =0;
+        }
+        if (minute == 60){
+            hour++;
+            minute = 0;
+        }
+    }, 1000);
+}
+
 for (let i=0; i <cardArray.length; i++){
     cardStack= cardArray[i];
     cardStack.addEventListener('click', openCard);
